@@ -1,0 +1,12 @@
+[codestyle]
+indent_width=2
+template_file='/home/noshinn/Desktop/competitive_programming/template/template.cpp'
+workspace_dir='/home/noshinn/Desktop/competitive_programming/atcoder'
+lang='cpp'
+[compiler]
+compile_command='g++ -std=gnu++23 -O2 -DONLINE_JUDGE -DATCODER -Wall -Wextra -mtune=native -march=native -fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647 -I/home/noshinn/icpc/ac-library -I/opt/boost/gcc/include -L/opt/boost/gcc/lib -o main main.cpp -I/usr/include/eigen3 -g -fsanitize=address,undefined -fno-omit-frame-pointer'
+[tester]
+compile_before_testing=true
+timeout_adjustment=1.0
+[etc]
+skip_existing_problems=true
