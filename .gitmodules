@@ -1,0 +1,9 @@
+[submodule "reactive"]
+	path = reactive
+	url = git@github.com:no-shin/reactive.git
+[submodule "noshinn_library"]
+	path = noshinn_library
+	url = git@github.com:no-shin/noshinn_library.git
+[submodule "ac-library"]
+	path = ac-library
+	url = https://github.com/atcoder/ac-library.git
