@@ -1,5 +1,9 @@
+// ライブラリ、テンプレ、スニペットは以下で事前に準備(現在整備途中)
+//  https://github.com/no-shin/competitive_programming
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 using ll = long long;
 
 void solve() {}
