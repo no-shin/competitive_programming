@@ -5,7 +5,8 @@
 #   {{ROOT}}           このリポジトリの絶対パス
 #   {{COMPILE_FLAGS}}  config/compile_flags.txt を空白区切りでつないだもの
 #   {{COMPILE_ARGS}}   同じものを JSON 文字列のカンマ区切りにしたもの（JSON の配列の中で使う）
-#   {{INCLUDE_PATHS}}  -I の値を JSON 文字列のカンマ区切りにしたもの
+#   {{INCLUDE_PATHS}}  ${workspaceFolder}/** と、-I の値のうちこのマシンに存在するものを
+#                      JSON 文字列のカンマ区切りにしたもの
 #   {{DEFINES}}        -D の値を JSON 文字列のカンマ区切りにしたもの
 #   {{CPP_STANDARD}}   -std= の値（例: gnu++20）
 import json
@@ -39,13 +40,19 @@ def json_items(values):
 
 def build_variables(flags):
     includes = [f[2:] for f in flags if f.startswith("-I")]
+    # 存在しないディレクトリを VS Code に渡すと警告が出るので除く
+    # （g++ は存在しない -I を無視するので、コンパイルオプションには残してよい）
+    missing = [d for d in includes if not pathlib.Path(d).is_dir()]
+    for d in missing:
+        print(f"skip include path (not found): {d}")
+    includes = [d for d in includes if d not in missing]
     defines = [f[2:] for f in flags if f.startswith("-D")]
     standards = [f[5:] for f in flags if f.startswith("-std=")]
     return {
         "ROOT": str(ROOT),
         "COMPILE_FLAGS": " ".join(flags),
         "COMPILE_ARGS": json_items(flags),
-        "INCLUDE_PATHS": json_items(includes),
+        "INCLUDE_PATHS": json_items(["${workspaceFolder}/**", *includes]),
         "DEFINES": json_items(defines),
         "CPP_STANDARD": standards[-1] if standards else "",
     }

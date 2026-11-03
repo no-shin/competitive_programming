@@ -3,7 +3,6 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
                 {{INCLUDE_PATHS}}
             ],
             "defines": [
