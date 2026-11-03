@@ -1,0 +1,13 @@
+# コンパイルオプション（atcoder-tools / VS Code / alias compile で共通）
+# 空白・改行区切り。# 以降はコメント。{{ROOT}} はリポジトリの場所に置き換わる
+# -o や入力ファイルはここに書かない（使う側で付ける）
+
+-std=gnu++20 -O2
+-DONLINE_JUDGE -DATCODER
+-Wall -Wextra
+-mtune=native -march=native
+-fconstexpr-depth=2147483647 -fconstexpr-loop-limit=2147483647 -fconstexpr-ops-limit=2147483647
+-I{{ROOT}}/ac-library
+-I/opt/boost/gcc/include -L/opt/boost/gcc/lib
+-I/usr/include/eigen3
+-g -fsanitize=address,undefined -fno-omit-frame-pointer

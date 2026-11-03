@@ -1,0 +1,3 @@
+# scripts/gen_config.py が config/shellrc.in から生成する（直接編集しない）
+alias compile='g++ {{COMPILE_FLAGS}} -o main main.cpp'
+alias atcoder-tools='{{ROOT}}/.venv/bin/atcoder-tools'

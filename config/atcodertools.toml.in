@@ -1,0 +1,15 @@
+[codestyle]
+indent_width=2
+template_file='{{ROOT}}/template/template.cpp'
+workspace_dir='{{ROOT}}/atcoder'
+lang='cpp'
+[compiler]
+compile_command='g++ {{COMPILE_FLAGS}} -o main main.cpp'
+[tester]
+compile_before_testing=true
+timeout_adjustment=1.0
+[postprocess]
+# 生成した .vscode（設定とスニペット）をコンテストディレクトリにリンクする
+exec_on_contest_dir='ln -sfn "{{ROOT}}/.vscode" .vscode'
+[etc]
+skip_existing_problems=true

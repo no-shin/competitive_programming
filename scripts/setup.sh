@@ -17,8 +17,9 @@ if [ ! -d .venv ]; then
 fi
 .venv/bin/pip install -q -r requirements.txt
 
-echo "== atcoder-tools config"
-scripts/gen_config.sh
+echo "== config"
+python3 scripts/gen_config.py
+python3 scripts/gen_snippets.py
 
 # atcoder-tools は ~/.atcodertools.toml を読むのでリンクを張る
 # リンクではない実ファイルがあれば消さずに退避する
@@ -30,16 +31,18 @@ fi
 ln -sfn "$root/.atcodertools.toml" "$link"
 echo "linked $link -> $root/.atcodertools.toml"
 
-echo "== alias"
+echo "== shell"
+# alias compile / atcoder-tools は生成した .shellrc で定義する
 case "$(basename "${SHELL:-bash}")" in
     zsh) rc="$HOME/.zshrc" ;;
     *) rc="$HOME/.bashrc" ;;
 esac
-if grep -q "alias atcoder-tools=" "$rc" 2>/dev/null; then
-    echo "alias already in $rc (skipped)"
+line="source \"$root/.shellrc\""
+if grep -qF "$line" "$rc" 2>/dev/null; then
+    echo "$rc already sources .shellrc (skipped)"
 else
-    echo "alias atcoder-tools='$root/.venv/bin/atcoder-tools'" >> "$rc"
-    echo "added alias to $rc (run: source $rc)"
+    echo "$line" >> "$rc"
+    echo "added to $rc: $line (run: source $rc)"
 fi
 
 echo "done."

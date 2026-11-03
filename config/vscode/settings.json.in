@@ -1,6 +1,5 @@
 {
     "files.associations": {
         "*.hpp": "cpp"
-    },
-    "C_Cpp.default.cppStandard": "c++23"
+    }
 }
