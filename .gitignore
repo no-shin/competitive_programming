@@ -4,3 +4,4 @@
 a.out
 .venv/
 .claude/
+/.atcodertools.toml
